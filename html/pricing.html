@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
+<body>
+{% include "header.html" %}
+
+<div class="container">
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis">Pricing</h1>
+    <p class="fs-5 text-body-secondary">
+        Choose the course that matches your interests and career goals. At <b>Nubels Digital Academy</b>, our training programmes are designed to provide practical, hands-on skills that students can apply in real-world situations.    </p>
+</div>
+
+</div>
+
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Web Development</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">₦50,000<small class="text-body-secondary fw-light">/mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>HTML & CSS</li>
+                    <li>JavaScript fundamentals</li>
+                    <li>Responsive web design</li>
+                    <li>Website development</li>
+                    <li>Practical web projects</li>
+                    <li>Certificate of completion</li>
+                </ul> <button type="button" class="w-100 btn btn-lg btn-outline-primary"><a href="{{url_for('register')}}">Enroll Now</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Data Analysis</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">₦60,000<small class="text-body-secondary fw-light">/mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Microsoft Excel</li>
+                    <li>Data cleaning</li>
+                    <li>Data analysis</li>
+                    <li>SQL fundamentals</li>
+                    <li>Python for data analysis</li>
+                    <li>Power BI & data visualization</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary"><a href="{{url_for('register')}}" style="color: white">Enroll Now</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-bg-primary border-primary">
+                <h4 class="my-0 fw-normal">Full-Stack Development</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">₦100,000<small class="text-body-secondary fw-light">/mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Front-end development</li>
+                    <li>Back-end development</li>
+                    <li>Database management</li>
+                    <li>API development</li>
+                    <li>Authentication & security</li>
+                    <li>Application deployment</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary"><a href="{{url_for('register')}}" style="color: white">Enroll Now</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Cybersecurity</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">₦70,000<small class="text-body-secondary fw-light">/mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Cybersecurity fundamentals</li>
+                    <li>Network security</li>
+                    <li>Information security</li>
+                    <li>Cyber threat awareness</li>
+                    <li>Security best practices</li>
+                    <li>Ethical security concepts</li>
+                </ul> <button type="button" class="w-100 btn btn-lg btn-outline-primary"><a href="{{url_for('register')}}.html">Enroll Now</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Robotics</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">₦80,000<small class="text-body-secondary fw-light">/mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Robotics fundamentals</li>
+                    <li>Basic electronics</li>
+                    <li>Programming</li>
+                    <li>Sensors & components</li>
+                    <li>Microcontrollers</li>
+                    <li>Practical robotics projects</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary"><a href="{{url_for('register')}}" style="color: white">Enroll Now</a></button>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-bg-primary border-primary">
+                <h4 class="my-0 fw-normal">Project Management</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">₦50,000<small class="text-body-secondary fw-light">/mo</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Project management fundamentals</li>
+                    <li>Project planning & scheduling</li>
+                    <li>Task & resource management</li>
+                    <li>Risk management</li>
+                    <li>Team collaboration</li>
+                    <li>Project monitoring & reporting</li>
+                </ul>
+                <button type="button" class="w-100 btn btn-lg btn-primary"><a href="{{url_for('register')}}" style="color: white">Enroll Now</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% include "footer.html" %}
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+</body>
+</html>

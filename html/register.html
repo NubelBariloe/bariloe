@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+{% include "header.html" %}
+
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Start Your Tech Journey Today</h1>
+            <p class="col-lg-10 fs-4" style="text-align: justify;">
+                Ready to build valuable skills and take the next step in your career? <b>Nubels Digital Academy</b> provides practical, hands-on training designed to help you learn, grow, and succeed in the digital world.
+            </p>
+            <p class="col-lg-10 fs-4" style="text-align: justify;">
+                Fill out the form to tell us a little about yourself and select the course you are interested in. Our team will get in touch with you with more information about the training, registration process, and next steps.
+            </p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+
+            <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="{{url_for('register')}}" method="POST">
+                <div class="form-floating mb-3">
+                    {% if message %}
+                    <div class="error-message">
+                        {{ message }}
+                    </div>
+                    {% endif %}
+
+                    {% from 'bootstrap5/form.html' import render_form %}
+                    {{ render_form(form) }}
+                </div>
+                 <div class="text-center mt-3">
+                    <p class="mb-0"> already registered?
+                        <a href="{{ url_for('login') }}" class="text-decoration-none fw-bold"> Login here </a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% include "footer.html" %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
