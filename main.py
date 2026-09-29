@@ -15,13 +15,31 @@ from smtplib import SMTP_SSL
 from email.message import EmailMessage
 from random import randint
 from datetime import timedelta, datetime
-db = SQLAlchemy()
+import os
+from dotenv import load_dotenv
+
+
 
 
 app = Flask(__name__, template_folder='html', static_folder='static')
+db = SQLAlchemy()
 bootsrap = Bootstrap5(app)
 app.secret_key = "ben"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///schools.db"
+
+load_dotenv()
+
+database_url = os.environ.get("DATABASE_URL")
+
+if database_url:
+    database_url = database_url.replace(
+        "postgres://",
+        "postgresql://",
+        1
+    )
+else:
+    database_url = "sqlite:///schools.db"
+
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 db.init_app(app)
 app.permanent_session_lifetime = timedelta(minutes= 5)
 
