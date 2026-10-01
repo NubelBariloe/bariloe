@@ -14,23 +14,26 @@ from smtplib import SMTP_SSL
 from email.message import EmailMessage
 from random import randint
 from datetime import timedelta, datetime
-import os
+from flask_migrate import Migrate
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = Flask(__name__, template_folder='html', static_folder='static')
 
+
 db = SQLAlchemy()
+
 bootsrap = Bootstrap5(app)
 app.secret_key = "ben"
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URI")
-
+app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://ben_fj15_user:nMB6XeEN9kI0adyJPufUEFkNGJITUg4s@dpg-dave74e7bikc73dnmb5g-a.oregon-postgres.render.com/ben_fj15"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
+migrate = Migrate(app, db)
+
 app.permanent_session_lifetime = timedelta(minutes= 5)
 
 
