@@ -26,7 +26,7 @@ db = SQLAlchemy()
 bootsrap = Bootstrap5(app)
 app.secret_key = "ben"
 
-app.config["SQLALCHEMY_DATABASE_URI"] = ("postgresql://postgres:Bariloe20%40@db.hvzfyyxkhyfrbjeonqmg.supabase.co:5432/postgres")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("postgresql://postgres:Bariloe20%40@db.hvzfyyxkhyfrbjeonqmg.supabase.co:5432/postgres")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
