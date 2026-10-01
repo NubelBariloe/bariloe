@@ -26,8 +26,16 @@ db = SQLAlchemy()
 bootsrap = Bootstrap5(app)
 app.secret_key = "ben"
 
-app.config["SQLALCHEMY_DATABASE_URI"] = ("postgresql+psycopg2://postgres:Bariloe20%40@127.0.0.1:5432/postgres")
+# app.config["SQLALCHEMY_DATABASE_URI"] = ("postgresql+psycopg2://postgres:Bariloe20%40@127.0.0.1:5432/postgres")
+
+database_url = os.getenv("postgresql+psycopg2://postgres:Bariloe20%40@127.0.0.1:5432/postgres")
+
+if not database_url:
+    raise RuntimeError("DATABASE_URL is not set")
+
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
 
 db.init_app(app)
 app.permanent_session_lifetime = timedelta(minutes= 5)
