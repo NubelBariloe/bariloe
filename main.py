@@ -18,28 +18,17 @@ from datetime import timedelta, datetime
 import os
 from dotenv import load_dotenv
 
-
-
+load_dotenv()
 
 app = Flask(__name__, template_folder='html', static_folder='static')
+
 db = SQLAlchemy()
 bootsrap = Bootstrap5(app)
 app.secret_key = "ben"
 
-load_dotenv()
+app.config["SQLALCHEMY_DATABASE_URI"] = ("postgresql+psycopg2://postgres:Bariloe20%40@127.0.0.1:5432/postgres")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-database_url = os.environ.get("DATABASE_URL")
-
-if database_url:
-    database_url = database_url.replace(
-        "postgres://",
-        "postgresql://",
-        1
-    )
-else:
-    database_url = "sqlite:///schools.db"
-
-app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 db.init_app(app)
 app.permanent_session_lifetime = timedelta(minutes= 5)
 
@@ -63,7 +52,7 @@ def before_request():
             if now - last_activity > timedelta(minutes=1):
                 logout_user()
                 session.clear()
-                return redirect(url_for('logg'))
+                return redirect(url_for('login'))
 
         session['last_activity'] = now.isoformat()
 
@@ -84,7 +73,7 @@ class User(UserMixin, db.Model):
     course = db.Column(db.String(120), nullable=False)
     username = db.Column(db.String(120), nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    score = db.Column(db.String(120), default=Null)
+    score = db.Column(db.String(120), default=None)
     role = db.Column(db.String(20), default="student")
 
     def get_id(self):
@@ -297,7 +286,7 @@ def results():
 def admin():
     users = User.query.all()
     class UserForm(FlaskForm):
-        reg_num = StringField('Registration Number', validators=[DataRequired(), Length(min=6, max=20)])
+        reg_num = IntegerField('Registration Number', validators=[DataRequired(), Length(min=6, max=20)])
         score = StringField('Score', validators=[DataRequired()])
         submit = SubmitField('Update Score')
 
