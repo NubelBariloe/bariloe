@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, flash, ses
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy.model import Model
 from flask_wtf import FlaskForm
-from sqlalchemy import Null
 from wtforms import StringField, SubmitField, SelectField, DateField, ValidationError, Form
 from wtforms.fields.numeric import IntegerField
 from wtforms.fields.simple import TextAreaField, PasswordField
@@ -18,7 +17,6 @@ from datetime import timedelta, datetime
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
 
 app = Flask(__name__, template_folder='html', static_folder='static')
 
@@ -26,7 +24,9 @@ db = SQLAlchemy()
 bootsrap = Bootstrap5(app)
 app.secret_key = "ben"
 
+load_dotenv()
 app.config["SQLALCHEMY_DATABASE_URI"] = ("postgresql+psycopg2://postgres:Bariloe20%40@127.0.0.1:5432/postgres")
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
