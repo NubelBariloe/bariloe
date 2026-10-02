@@ -118,7 +118,7 @@ def contact():
         submit = SubmitField('Submit')
 
     form = MessageForm()
-    if form.validate_on_submit():
+    if request.method == "POST":
         name = form.name.data
         email = form.email.data
         number = form.number.data
@@ -165,7 +165,7 @@ def register():
         submit = SubmitField('Register')
 
     form = RegistrationForm()
-    if form.validate_on_submit():
+    if request.method == "POST":
         name = form.name.data
         number = form.number.data
         email = form.email.data
