@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_bootstrap import Bootstrap5
-from flask_sqlalchemy.model import Model
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, DateField, ValidationError, Form
 from wtforms.fields.numeric import IntegerField
@@ -8,7 +7,6 @@ from wtforms.fields.simple import TextAreaField, PasswordField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, Regexp
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase,Mapped, mapped_column, Session
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 from smtplib import SMTP_SSL
 from email.message import EmailMessage
@@ -16,6 +14,7 @@ from random import randint
 from datetime import timedelta, datetime
 from flask_migrate import Migrate
 from dotenv import load_dotenv
+from config import Config
 
 load_dotenv()
 
@@ -25,11 +24,11 @@ app = Flask(__name__, template_folder='html', static_folder='static')
 db = SQLAlchemy()
 
 bootsrap = Bootstrap5(app)
-app.secret_key = "ben"
+app.secret_key = Config.secret_key
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://ben_fj15_user:nMB6XeEN9kI0adyJPufUEFkNGJITUg4s@dpg-dave74e7bikc73dnmb5g-a.oregon-postgres.render.com/ben_fj15"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config.from_object(Config)
+app.config.from_object(Config)
 
 db.init_app(app)
 migrate = Migrate(app, db)
@@ -65,8 +64,6 @@ def before_request():
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-passwords = "gxue dors rfbw fsdi"
-my_email = "nubelbariloe133@gmail.com"
 
 
 class User(UserMixin, db.Model):
@@ -212,13 +209,13 @@ def register():
 
 
 
-        with SMTP_SSL("smtp.gmail.com", 465, timeout=30) as smtp:
+        with SMTP_SSL(Config.host, Config.port, timeout=30) as smtp:
             email_msg = EmailMessage()
             email_msg["Subject"] = "Registration Confirmation"
-            email_msg["From"] = my_email
+            email_msg["From"] = Config.my_email
             email_msg["To"] = email
             email_msg.set_content(body)
-            smtp.login(my_email, passwords)
+            smtp.login(Config.my_email, Config.passwords)
             smtp.send_message(email_msg)
 
 
